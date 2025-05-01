@@ -3,6 +3,7 @@ package lk.ijse.onetomanyunidirectional.entity;
 import jakarta.persistence.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,7 +25,9 @@ public class Course{
     private List<Review>  reviews;
 
 
-
+    public Course(String title) {
+        this.title = title;
+    }
 
     public List<Review> getReviews() {
         return reviews;
@@ -68,4 +71,13 @@ public class Course{
     public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
     }
+
+    public void AddReview(Review review){
+        if(reviews==null){
+            reviews = new ArrayList<>();
+        }
+        reviews.add(review);
+    }
+
+
 }

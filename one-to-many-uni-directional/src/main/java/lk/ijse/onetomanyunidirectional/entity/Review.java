@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "reviews")
+@Table(name = "review")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Review {
@@ -16,6 +16,9 @@ public class Review {
     @Column(name = "comment")
     private String comment;
 
+    public Review(String comment) {
+        this.comment = comment;
+    }
 
     public int getId() {
         return id;
