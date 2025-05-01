@@ -34,4 +34,9 @@ public interface AppDAO {
     //above task doing with join query with fetch
     Instructor findInstructorByJoinFetch(int instructorId);
 
+    void updateInstructor(Instructor instructor);
+
+    Course findCourseById(int courseId);
+
+    void updateSelectedCourse(Course selectedCourse);
 }

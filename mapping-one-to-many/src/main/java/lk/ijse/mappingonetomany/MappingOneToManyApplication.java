@@ -25,8 +25,26 @@ public class MappingOneToManyApplication {
             //getAllCoursesWithInstructor(appDAO);
             //findInstructorWithCourses(appDAO);
             //findCoursesByInstructorId(appDAO);
-            findInstructorWithCoursesJoinFetch(appDAO);
+            //findInstructorWithCoursesJoinFetch(appDAO);//this method run in join query with fetch
+            //updateInstructor(appDAO);
+
+            updateCourse(appDAO);
         };
+    }
+
+    private void updateCourse(AppDAO appDAO) {
+        int courseId = 10;
+        Course selected_course = appDAO.findCourseById(courseId);
+        selected_course.setTitle("enjoy simple things");
+        appDAO.updateSelectedCourse(selected_course);
+    }
+
+    private void updateInstructor(AppDAO appDAO) {
+        int id=1;
+        Instructor temp_instructor = appDAO.findById(id);
+        temp_instructor.setLastName("tester");
+        temp_instructor.setFirstName("paul");
+        appDAO.updateInstructor(temp_instructor);
     }
 
     private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
