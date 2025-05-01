@@ -57,5 +57,5 @@ public interface AppDAO {
 
     void updateStudent(Student student);
 
-
+    void deleteStudentByStudentId(int studentId);
 }

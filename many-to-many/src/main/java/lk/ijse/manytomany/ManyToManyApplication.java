@@ -21,8 +21,14 @@ public class ManyToManyApplication {
              // findCourseAndStudentByCourseId(appDAO);
              //findCourseAndStudentByStudentId(appDAO);
             //addMorecoursesToStudent(appDAO);
-            deleteCourse(appDAO);
+            //deleteCourse(appDAO);
+            deleteStudent(appDAO);
         };
+    }
+
+    private void deleteStudent(AppDAO appDAO) {
+        int studentId = 5;
+        appDAO.deleteStudentByStudentId(studentId);
     }
 
     private void deleteCourse(AppDAO appDAO) {
