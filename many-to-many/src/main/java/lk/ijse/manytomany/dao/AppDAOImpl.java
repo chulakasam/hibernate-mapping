@@ -1,5 +1,6 @@
 package lk.ijse.manytomany.dao;
 
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
@@ -153,5 +154,10 @@ public class AppDAOImpl implements AppDAO {
     @Override
     public void deleteCourseAndReviewByCourseId(int courseId) {
         entityManager.remove(findCourseAndReviewById(courseId));
+    }
+
+    @Override
+    public void createStudentAndCourse(Course course) {
+        entityManager.persist(course);
     }
 }
