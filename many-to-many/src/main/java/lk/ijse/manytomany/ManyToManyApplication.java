@@ -17,11 +17,20 @@ public class ManyToManyApplication {
     @Bean
     public CommandLineRunner init(AppDAO appDAO) {
         return runner -> {
-            createCousesAndStudents(appDAO);
+           // createCoursesAndStudents(appDAO);
+              findCourseAndStudentByCourseId(appDAO);
         };
     }
 
-    private void createCousesAndStudents(AppDAO appDAO) {
+    private void findCourseAndStudentByCourseId(AppDAO appDAO) {
+        int courseId =10;
+        Course courseAndStudentByCourseId = appDAO.findCourseAndStudentByCourseId(courseId);
+        System.out.println(courseAndStudentByCourseId);
+        System.out.println(courseAndStudentByCourseId.getStudents());
+
+    }
+
+    private void createCoursesAndStudents(AppDAO appDAO) {
         //create course
         Course course = new Course("pacman-how to score one milion");
 
