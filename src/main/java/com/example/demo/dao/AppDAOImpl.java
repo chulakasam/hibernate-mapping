@@ -1,0 +1,50 @@
+package com.example.demo.dao;
+
+import com.example.demo.entity.Instructor;
+import jakarta.persistence.EntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Repository
+@Transactional
+public class AppDAOImpl implements AppDAO {
+    private EntityManager entityManager;
+    @Autowired
+    public AppDAOImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+    @Override
+    public void save(Instructor instructor) {
+        entityManager.persist(instructor);
+    }
+
+    @Override
+    public List<Instructor> findAll() {
+        List<Instructor> instructorList = entityManager.createQuery(" from Instructor", Instructor.class).getResultList();
+        return instructorList;
+    }
+
+    @Override
+    public Instructor findById(int id) {
+        Instructor instructor = entityManager.find(Instructor.class, id);
+        return instructor;
+
+    }
+
+    @Override
+    public void deleteById(int id) {
+        entityManager.remove(entityManager.find(Instructor.class, id));
+    }
+
+    @Override
+    public void updateSelectInstructor(int id,Instructor instructor) {
+        Instructor instructor1 = entityManager.find(Instructor.class, id);
+        instructor1.setFirstName(instructor.getFirstName());
+        instructor1.setLastName(instructor.getLastName());
+        instructor1.setEmail(instructor.getEmail());
+
+    }
+}
