@@ -17,10 +17,29 @@ public class ManyToManyApplication {
     @Bean
     public CommandLineRunner init(AppDAO appDAO) {
         return runner -> {
-           // createCoursesAndStudents(appDAO);
+             // createCoursesAndStudents(appDAO);
              // findCourseAndStudentByCourseId(appDAO);
-            findCourseAndStudentByStudentId(appDAO);
+             //findCourseAndStudentByStudentId(appDAO);
+            //addMorecoursesToStudent(appDAO);
+            deleteCourse(appDAO);
         };
+    }
+
+    private void deleteCourse(AppDAO appDAO) {
+        int id=10;
+        appDAO.deleteCourseById(id);
+    }
+
+
+    private void addMorecoursesToStudent(AppDAO appDAO) {
+        int stu_id=2;
+        Student temp_stu = appDAO.findStudentAndCourseByStudentId(stu_id);
+        Course course1 = new Course("rubik cube-how to speed cube");
+        Course course2 = new Course("game development");
+        temp_stu.addCourse(course1);
+        temp_stu.addCourse(course2);
+        appDAO.updateStudent(temp_stu);
+
     }
 
     private void findCourseAndStudentByStudentId(AppDAO appDAO) {
