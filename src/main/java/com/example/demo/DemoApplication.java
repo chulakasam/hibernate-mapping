@@ -29,8 +29,23 @@ public class DemoApplication {
 
 			//deleteSelectedInstructor(appDAO);
 
-			updateSelectedInstructor(appDAO);
+			//updateSelectedInstructor(appDAO);
+
+			//findInstructorDetails(appDAO);
+
+			deleteSelectedInstructorDetails(appDAO);
 		};
+	}
+
+	private void deleteSelectedInstructorDetails(AppDAO appDAO) {
+		int id=3;
+		appDAO.deleteInstructorDetailsById(id);
+	}
+
+	private void findInstructorDetails(AppDAO appDAO) {
+		int  id = 3;
+		InstructorDetails instructorDetailsById = appDAO.findInstructorDetailsById(id);
+		System.out.println("instructor details :"+instructorDetailsById.getYouTubeChannel()+' '+instructorDetailsById.getHobby()+' '+instructorDetailsById.getInstructor());
 	}
 
 	private void updateSelectedInstructor(AppDAO appDAO) {

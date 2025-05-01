@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import com.example.demo.entity.Instructor;
+import com.example.demo.entity.InstructorDetails;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -46,5 +47,16 @@ public class AppDAOImpl implements AppDAO {
         instructor1.setLastName(instructor.getLastName());
         instructor1.setEmail(instructor.getEmail());
 
+    }
+
+    @Override
+    public InstructorDetails findInstructorDetailsById(int id) {
+        return entityManager.find(InstructorDetails.class, id);
+    }
+
+    @Override
+    public void deleteInstructorDetailsById(int id) {
+        InstructorDetails instructorDetails = entityManager.find(InstructorDetails.class, id);
+        entityManager.remove(instructorDetails);
     }
 }
