@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "instructor")
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Instructor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +26,32 @@ public class Instructor {
     @Column(name = "email")
     private String email;
 
-
-// this is the foreign key column in instructor
+    // this is the foreign key column in instructor
     @OneToOne(cascade = CascadeType.ALL )
     @JoinColumn(name="instructor_detail_id")
     private InstructorDetails instructorDetails;
+
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor", cascade = {CascadeType.DETACH,CascadeType.MERGE,
+            CascadeType.REFRESH,CascadeType.PERSIST})
+    private List<Course> courses ;
+
+    // add convenience method for bi directional
+    public void add(Course course){
+        if(courses == null){
+            courses = new ArrayList<>();
+        }
+        courses.add(course);
+        course.setInstructor(this);
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 
     public int getId() {
         return id;
@@ -69,4 +92,5 @@ public class Instructor {
     public void setInstructorDetails(InstructorDetails instructorDetails) {
         this.instructorDetails = instructorDetails;
     }
+
 }

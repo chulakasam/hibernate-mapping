@@ -2,6 +2,7 @@ package lk.ijse.mappingonetomany.dao;
 
 
 
+import lk.ijse.mappingonetomany.entity.Course;
 import lk.ijse.mappingonetomany.entity.Instructor;
 import lk.ijse.mappingonetomany.entity.InstructorDetails;
 
@@ -21,5 +22,14 @@ public interface AppDAO {
     InstructorDetails findInstructorDetailsById(int id);
 
     void deleteInstructorDetailsById(int id);
+
+    void saveCourseWithInstructor(Course course);
+
+    List<Course> findAllCourses();
+
+    Instructor findInstructorWithCourses(int instructorId);
+
+
+    List<Course> findCoursesByInstructorId(int instructorId);
 
 }

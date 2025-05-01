@@ -1,5 +1,7 @@
 package lk.ijse.mappingonetomany.dao;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import lk.ijse.mappingonetomany.entity.Course;
 import lk.ijse.mappingonetomany.entity.Instructor;
 import lk.ijse.mappingonetomany.entity.InstructorDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +59,31 @@ public class AppDAOImpl implements AppDAO {
     public void deleteInstructorDetailsById(int id) {
         InstructorDetails instructorDetails = entityManager.find(InstructorDetails.class, id);
         entityManager.remove(instructorDetails);
+    }
+
+    @Override
+    public void saveCourseWithInstructor(Course course) {
+        entityManager.persist(course);
+    }
+
+    @Override
+    public List<Course> findAllCourses() {
+        List<Course> fromCourse = entityManager.createQuery("from Course", Course.class).getResultList();
+        return fromCourse;
+    }
+
+    @Override
+    public Instructor findInstructorWithCourses(int instructorId) {
+        Instructor instructor = entityManager.find(Instructor.class, instructorId);
+        return instructor;
+    }
+
+    @Override
+    public List<Course> findCoursesByInstructorId(int instructorId) {
+        TypedQuery<Course> query = entityManager.createQuery("from Course where instructor.id=:data", Course.class);
+        query.setParameter("data", instructorId);
+        List<Course> resultList = query.getResultList();
+
+        return resultList;
     }
 }

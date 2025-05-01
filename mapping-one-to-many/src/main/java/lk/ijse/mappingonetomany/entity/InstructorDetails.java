@@ -1,6 +1,6 @@
 package lk.ijse.mappingonetomany.entity;
 
-import com.example.demo.entity.Instructor;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -18,6 +18,15 @@ public class InstructorDetails {
 
     @Column(name ="youtube_channel")
     private String youTubeChannel;
+    @Column(name = "hobby")
+    private String hobby;
+
+    @OneToOne(mappedBy = "instructorDetails",cascade = CascadeType.ALL)
+    private Instructor instructor;
+    //this field add to solve unidirectional issues (to bi directional)
+
+
+
 
     public int getId() {
         return id;
@@ -51,10 +60,4 @@ public class InstructorDetails {
         this.instructor = instructor;
     }
 
-    @Column(name = "hobby")
-    private String hobby;
-
-    @OneToOne(mappedBy = "instructorDetails",cascade = CascadeType.ALL)
-    private Instructor instructor;
-    //this field add to solve unidirectional issues (to bi directional)
-}
+    }
