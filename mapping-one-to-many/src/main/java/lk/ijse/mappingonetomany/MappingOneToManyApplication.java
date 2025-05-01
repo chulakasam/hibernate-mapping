@@ -24,16 +24,23 @@ public class MappingOneToManyApplication {
             //createInstructorWithCourses(appDAO);
             //getAllCoursesWithInstructor(appDAO);
             //findInstructorWithCourses(appDAO);
-            findCoursesByInstructorId(appDAO);
+            //findCoursesByInstructorId(appDAO);
+            findInstructorWithCoursesJoinFetch(appDAO);
         };
+    }
+
+    private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
+        int instructorId = 1;
+        Instructor temp_instructor = appDAO.findInstructorByJoinFetch(instructorId);
+        System.out.println("the  associated courses :"+temp_instructor.getCourses());
     }
 
     private void findCoursesByInstructorId(AppDAO appDAO) {
         int instructorId = 1;
+        Instructor instructorWithCourses = appDAO.findInstructorWithCourses(instructorId);
         List<Course> coursesByInstructorId = appDAO.findCoursesByInstructorId(instructorId);
-        for (Course course : coursesByInstructorId) {
-            System.out.println(course);
-        }
+        instructorWithCourses.setCourses(coursesByInstructorId);
+        System.out.println("courses"+instructorWithCourses.getCourses());
     }
 
     private void findInstructorWithCourses(AppDAO appDAO) {
