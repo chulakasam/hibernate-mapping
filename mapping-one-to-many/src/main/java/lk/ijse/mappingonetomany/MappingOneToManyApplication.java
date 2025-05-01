@@ -28,8 +28,13 @@ public class MappingOneToManyApplication {
             //findInstructorWithCoursesJoinFetch(appDAO);//this method run in join query with fetch
             //updateInstructor(appDAO);
 
-            updateCourse(appDAO);
+            //updateCourse(appDAO);
+            deleteSpecificInstructor(appDAO);
         };
+    }
+
+    private void deleteSpecificInstructor(AppDAO appDAO) {
+        appDAO.deleteInstructorById(1);
     }
 
     private void updateCourse(AppDAO appDAO) {
