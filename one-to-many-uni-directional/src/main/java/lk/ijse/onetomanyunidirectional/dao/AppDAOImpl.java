@@ -1,9 +1,10 @@
-package lk.ijse.mappingonetomany.dao;
+package lk.ijse.onetomanyunidirectional.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import lk.ijse.mappingonetomany.entity.Course;
-import lk.ijse.mappingonetomany.entity.Instructor;
-import lk.ijse.mappingonetomany.entity.InstructorDetails;
+
+import lk.ijse.onetomanyunidirectional.entity.Course;
+import lk.ijse.onetomanyunidirectional.entity.Instructor;
+import lk.ijse.onetomanyunidirectional.entity.InstructorDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

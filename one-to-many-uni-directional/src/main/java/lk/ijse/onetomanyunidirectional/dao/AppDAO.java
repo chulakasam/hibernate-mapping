@@ -1,10 +1,12 @@
-package lk.ijse.mappingonetomany.dao;
+package lk.ijse.onetomanyunidirectional.dao;
 
 
 
-import lk.ijse.mappingonetomany.entity.Course;
-import lk.ijse.mappingonetomany.entity.Instructor;
-import lk.ijse.mappingonetomany.entity.InstructorDetails;
+
+
+import lk.ijse.onetomanyunidirectional.entity.Course;
+import lk.ijse.onetomanyunidirectional.entity.Instructor;
+import lk.ijse.onetomanyunidirectional.entity.InstructorDetails;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
-package lk.ijse.mappingonetomany.entity;
+package lk.ijse.onetomanyunidirectional.entity;
 
 import jakarta.persistence.*;
+
 
 import java.util.List;
 
@@ -18,12 +19,20 @@ public class Course{
             CascadeType.REFRESH,CascadeType.PERSIST})
     @JoinColumn(name ="instructor_id")
     private Instructor instructor;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private List<Review>  reviews;
 
 
 
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
 
-
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
 
 

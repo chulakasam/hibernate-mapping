@@ -21,7 +21,7 @@ public class MappingOneToManyApplication {
     @Bean
     public CommandLineRunner init(AppDAO appDAO) {
         return runner -> {
-            //createInstructorWithCourses(appDAO);
+            createInstructorWithCourses(appDAO);
             //getAllCoursesWithInstructor(appDAO);
             //findInstructorWithCourses(appDAO);
             //findCoursesByInstructorId(appDAO);
@@ -29,12 +29,19 @@ public class MappingOneToManyApplication {
             //updateInstructor(appDAO);
 
             //updateCourse(appDAO);
-            deleteSpecificInstructor(appDAO);
+            //deleteSpecificInstructor(appDAO);
+            //deleteSpecificCourse(appDAO);
         };
     }
 
+    private void deleteSpecificCourse(AppDAO appDAO) {
+        int course_id = 10;
+        appDAO.deleteCourseById(course_id);
+    }
+
     private void deleteSpecificInstructor(AppDAO appDAO) {
-        appDAO.deleteInstructorById(1);
+        int instructor_id = 1;
+        appDAO.deleteInstructorById(instructor_id);
     }
 
     private void updateCourse(AppDAO appDAO) {
