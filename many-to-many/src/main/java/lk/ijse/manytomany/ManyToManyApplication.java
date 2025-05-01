@@ -18,8 +18,17 @@ public class ManyToManyApplication {
     public CommandLineRunner init(AppDAO appDAO) {
         return runner -> {
            // createCoursesAndStudents(appDAO);
-              findCourseAndStudentByCourseId(appDAO);
+             // findCourseAndStudentByCourseId(appDAO);
+            findCourseAndStudentByStudentId(appDAO);
         };
+    }
+
+    private void findCourseAndStudentByStudentId(AppDAO appDAO) {
+        int studentId = 1;
+        Student student= appDAO.findStudentAndCourseByStudentId(studentId);
+            System.out.println(student);
+            System.out.println(student.getCourses());
+
     }
 
     private void findCourseAndStudentByCourseId(AppDAO appDAO) {

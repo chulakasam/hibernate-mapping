@@ -2,11 +2,13 @@ package lk.ijse.manytomany.dao;
 
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 import lk.ijse.manytomany.entity.Course;
 import lk.ijse.manytomany.entity.Instructor;
 import lk.ijse.manytomany.entity.InstructorDetails;
+import lk.ijse.manytomany.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -170,5 +172,14 @@ public class AppDAOImpl implements AppDAO {
 
 
         return singleResult;
+    }
+
+    @Override
+    public Student findStudentAndCourseByStudentId(int studentId) {
+        TypedQuery<Student> query = entityManager.createQuery("select s from Student s join fetch s.courses where s.id = :data", Student.class);
+        query.setParameter("data", studentId);
+        Student result =  query.getSingleResult();
+
+        return  result;
     }
 }

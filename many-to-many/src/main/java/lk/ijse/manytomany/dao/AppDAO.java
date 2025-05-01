@@ -5,6 +5,7 @@ package lk.ijse.manytomany.dao;
 import lk.ijse.manytomany.entity.Course;
 import lk.ijse.manytomany.entity.Instructor;
 import lk.ijse.manytomany.entity.InstructorDetails;
+import lk.ijse.manytomany.entity.Student;
 
 import java.util.List;
 
@@ -51,4 +52,6 @@ public interface AppDAO {
     void createStudentAndCourse(Course course);
 
     Course findCourseAndStudentByCourseId(int courseId);
+
+    Student findStudentAndCourseByStudentId(int studentId);
 }
